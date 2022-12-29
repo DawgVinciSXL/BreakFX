@@ -153,31 +153,13 @@ namespace BreakFX
                     {
                         BreakFXController.Instance.frontTrans.GetComponent<Renderer>().enabled = false;
                         BreakFXController.Instance.backTrans.GetComponent<Renderer>().enabled = false;
-                        CharacterCustomizer rcc = ReplayEditorController.Instance.playbackController.characterCustomizer;
-                        rcc.DeckParent.gameObject.SetActive(true);
-                        rcc.TruckBaseParents[0].gameObject.SetActive(true);
-                        rcc.TruckBaseParents[1].gameObject.SetActive(true);
-                        rcc.TruckHangerParents[0].gameObject.SetActive(true);
-                        rcc.TruckHangerParents[1].gameObject.SetActive(true);
-                        rcc.WheelParents[0].gameObject.SetActive(true);
-                        rcc.WheelParents[1].gameObject.SetActive(true);
-                        rcc.WheelParents[2].gameObject.SetActive(true);
-                        rcc.WheelParents[3].gameObject.SetActive(true);
+                        BreakFXController.Instance.UnhideReplayBoard();
                     }
                     else
                     {
                         BreakFXController.Instance.frontTrans.GetComponent<Renderer>().enabled = true;
                         BreakFXController.Instance.backTrans.GetComponent<Renderer>().enabled = true;
-                        CharacterCustomizer rcc = ReplayEditorController.Instance.playbackController.characterCustomizer;
-                        rcc.DeckParent.gameObject.SetActive(false);
-                        rcc.TruckBaseParents[0].gameObject.SetActive(false);
-                        rcc.TruckBaseParents[1].gameObject.SetActive(false);
-                        rcc.TruckHangerParents[0].gameObject.SetActive(false);
-                        rcc.TruckHangerParents[1].gameObject.SetActive(false);
-                        rcc.WheelParents[0].gameObject.SetActive(false);
-                        rcc.WheelParents[1].gameObject.SetActive(false);
-                        rcc.WheelParents[2].gameObject.SetActive(false);
-                        rcc.WheelParents[3].gameObject.SetActive(false);
+                        BreakFXController.Instance.HideReplayBoard();
                     }
                 }
             }

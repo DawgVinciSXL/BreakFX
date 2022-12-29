@@ -86,7 +86,6 @@ namespace BreakFX
             {
                 FindMaterials();
                 HideBoard();
-                isBoardHidden = true;
                 PlayerController.Instance.ForceBail();
                 Quaternion rot = Quaternion.FromToRotation(bbPrefab.transform.rotation.eulerAngles, boardTransPos.rotation.eulerAngles);
                 bbSpawner = Instantiate(bbPrefab, boardTransPos.position, boardTransPos.rotation);
@@ -144,18 +143,8 @@ namespace BreakFX
                     Destroy(bbSpawner.GetComponent<ObjectTracker>());
                     Destroy(bbSpawner);
                     UnhideBoard();
-                    isBoardHidden = false;
                     boardBroken = false;
-                    CharacterCustomizer rcc = ReplayEditorController.Instance.playbackController.characterCustomizer;
-                    rcc.DeckParent.gameObject.SetActive(true);
-                    rcc.TruckBaseParents[0].gameObject.SetActive(true);
-                    rcc.TruckBaseParents[1].gameObject.SetActive(true);
-                    rcc.TruckHangerParents[0].gameObject.SetActive(true);
-                    rcc.TruckHangerParents[1].gameObject.SetActive(true);
-                    rcc.WheelParents[0].gameObject.SetActive(true);
-                    rcc.WheelParents[1].gameObject.SetActive(true);
-                    rcc.WheelParents[2].gameObject.SetActive(true);
-                    rcc.WheelParents[3].gameObject.SetActive(true);
+                    UnhideReplayBoard();
                     needReset = false;
                 }
             }
@@ -241,6 +230,7 @@ namespace BreakFX
             cc.WheelParents[1].gameObject.transform.GetChild(0).gameObject.SetActive(false);
             cc.WheelParents[2].gameObject.transform.GetChild(0).gameObject.SetActive(false);
             cc.WheelParents[3].gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            isBoardHidden = true;
         }
 
         private void UnhideBoard()
@@ -255,6 +245,35 @@ namespace BreakFX
             cc.WheelParents[1].gameObject.transform.GetChild(0).gameObject.SetActive(true);
             cc.WheelParents[2].gameObject.transform.GetChild(0).gameObject.SetActive(true);
             cc.WheelParents[3].gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            isBoardHidden = false;
+        }
+
+        public void HideReplayBoard()
+        {
+            CharacterCustomizer rcc = ReplayEditorController.Instance.playbackController.characterCustomizer;
+            rcc.DeckParent.gameObject.SetActive(false);
+            rcc.TruckBaseParents[0].gameObject.SetActive(false);
+            rcc.TruckBaseParents[1].gameObject.SetActive(false);
+            rcc.TruckHangerParents[0].gameObject.SetActive(false);
+            rcc.TruckHangerParents[1].gameObject.SetActive(false);
+            rcc.WheelParents[0].gameObject.SetActive(false);
+            rcc.WheelParents[1].gameObject.SetActive(false);
+            rcc.WheelParents[2].gameObject.SetActive(false);
+            rcc.WheelParents[3].gameObject.SetActive(false);
+        }
+
+        public void UnhideReplayBoard()
+        {
+            CharacterCustomizer rcc = ReplayEditorController.Instance.playbackController.characterCustomizer;
+            rcc.DeckParent.gameObject.SetActive(true);
+            rcc.TruckBaseParents[0].gameObject.SetActive(true);
+            rcc.TruckBaseParents[1].gameObject.SetActive(true);
+            rcc.TruckHangerParents[0].gameObject.SetActive(true);
+            rcc.TruckHangerParents[1].gameObject.SetActive(true);
+            rcc.WheelParents[0].gameObject.SetActive(true);
+            rcc.WheelParents[1].gameObject.SetActive(true);
+            rcc.WheelParents[2].gameObject.SetActive(true);
+            rcc.WheelParents[3].gameObject.SetActive(true);
         }
 
         private void FindMaterials()
